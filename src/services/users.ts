@@ -1,10 +1,33 @@
-import { UsersEntry } from '../../types'
-import usersData from './users.json'
+import { UsersEntry, idType } from '../../types'
+import UserModel from '../models/users'
+export const createUser = async (User: UsersEntry) => {
+    let user
+    try {
+        user = await UserModel.create(User)
+        console.log("auiii", user);
+        return user
+    } catch (error) {
+        console.log('====================================');
+        console.log(error);
+        console.log('====================================');
+    }
+    return user
+}
 
- const users: Array<UsersEntry> = usersData as Array<UsersEntry>
 
- const createUser = () => {return users}
+export const getUsers = async () => {
+    const users = await UserModel.findAll()
+    return users
+}
 
- export default createUser
 
+export const getUserById = async (id: idType) => {
+    console.log(id)
+     const user = await UserModel.findAll({
+        where: {
+            id: id
+        }
+     })
+    return user
+}
 
