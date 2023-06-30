@@ -40,7 +40,7 @@ const UserModel = sequelize.define<UserModel>("user", {
     unique: true,
   },
   phone: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.BIGINT,
     allowNull: false,
     unique: true,
   },

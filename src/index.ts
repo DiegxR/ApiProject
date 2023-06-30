@@ -1,9 +1,9 @@
 import express from "express";
 import users from "./routes/users";
 import { sequelize } from "./db";
-import auth from "./routes/auth";
+import passportMiddleware from "./routes/auth";
 import passport from "passport";
-import session from "express-session";
+/* import session from "express-session"; */
 /* const SequelizeStore = require("connect-session-sequelize")(session.Store); */
 const app = express();
 const PORT = 3000;
@@ -14,23 +14,21 @@ const PORT = 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+passport.use(passportMiddleware);
 
-auth(passport);
-
-app.use(
+/* app.use(
   session({
     secret: "mi_secreto",
     resave: false,
     saveUninitialized: false,
-    /* store: sessionStore,  */
+    store: sessionStore, 
   })
-);
+); */
 
 /* sessionStore.sync(); */
 
 app.use(passport.initialize()); // Inicializa Passport.js
 
-/* app.use(passport.session()); */
 app.use("/users", users);
 
 sequelize
