@@ -1,12 +1,16 @@
-import passport from "passport";
-import { DataTypes } from "sequelize"
-export type nameUser = 'Diego' | 'Jhon'
-export type idType = DataTypes.UUID4
-export type passport = passport
-
+import passport from 'passport';
+import { DataTypes,Sequelize } from 'sequelize';
+export type idType = DataTypes.UUID4;
+export type passport = passport;
+export type sequelize = Sequelize;
 export interface UsersEntry {
-    name: nameUser,
-    password: string,
-    email: string,
-    phone: number
+  name: string;
+  password: string;
+  email: string;
+  phone: number;
+}
+export interface ProductEntry {
+  id: number;
+  name: string;
+  ingredients: string
 }
